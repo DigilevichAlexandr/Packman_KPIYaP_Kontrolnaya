@@ -4,6 +4,7 @@ Graphics::Graphics(int width, int height)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	Screen = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+	TTF_Init();
 }
 
 Image* Graphics::NewImage(char* file)
@@ -59,8 +60,25 @@ bool Graphics::DrawImage(Image* img, int x, int y, int startX, int startY, int e
 	return true;
 }
 
+void Graphics::WriteText(int x, int y, char text[100], int sz, int r, int g, int b)
+{
+	SDL_Color clr; // Тип для цвета. 4 числа — R, G, B и A, соответственно.
+	clr.r = r;
+	clr.g = g;  // Зададим параметры цвета
+	clr.b = b;
+	TTF_Font * fnt = TTF_OpenFont("courier.ttf", sz); // Загружаем шрифт по заданному адресу размером sz
+	SDL_Rect dest;
+	dest.x = x;
+	dest.y = y;
+	SDL_Surface * TextSurface = TTF_RenderText_Blended(fnt, text, clr); // Переносим на поверхность текст с заданным шрифтом и цветом
+	SDL_BlitSurface(TextSurface, NULL, Screen, &dest);
+	SDL_FreeSurface(TextSurface); // Освобождаем память уже ненужной поверхности
+	TTF_CloseFont(fnt); // Закрываем шрифт
+}
+
 void Graphics::Flip()
 {
 	SDL_Flip(Screen);
 	SDL_FillRect(Screen, NULL, 0x000000);
 }
+

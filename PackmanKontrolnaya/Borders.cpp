@@ -9,9 +9,9 @@ SDL_Rect* Borders::MakeBorders()
 	borders[0].w = 444;
 	borders[0].h = 7;
 
-	borders[1].x = 213;
+	borders[1].x = 211;
 	borders[1].y = 7;
-	borders[1].w = 23;
+	borders[1].w = 20;
 	borders[1].h = 55;
 
 	borders[2].x = 0;
@@ -19,25 +19,25 @@ SDL_Rect* Borders::MakeBorders()
 	borders[2].w = 9;
 	borders[2].h = 132;
 
-	borders[3].x = 117;
-	borders[3].y = 36;
-	borders[3].w = 67;
-	borders[3].h = 26;
+	borders[3].x = 35;
+	borders[3].y = 35;
+	borders[3].w = 53;
+	borders[3].h = 29;
 
-	borders[4].x = 261;
+	borders[4].x = 116;
 	borders[4].y = 35;
-	borders[4].w = 67;
-	borders[4].h = 26;
+	borders[4].w = 68;
+	borders[4].h = 29;
 
-	borders[5].x = 357;
+	borders[5].x = 259;
 	borders[5].y = 35;
-	borders[5].w = 51;
-	borders[5].h = 26;
+	borders[5].w = 69;
+	borders[5].h = 29;
 
 	borders[6].x = 401;
 	borders[6].y = 77;
 	borders[6].w = 48;
-	borders[6].h = 23;
+	borders[6].h = 29;
 
 	borders[7].x = 436;
 	borders[7].y = 7;
@@ -54,10 +54,10 @@ SDL_Rect* Borders::MakeBorders()
 	borders[9].w = 117;
 	borders[9].h = 7;
 
-	borders[10].x = 0;
-	borders[10].y = 0;
-	borders[10].w = 444;
-	borders[10].h = 7;
+	borders[10].x = 211;
+	borders[10].y = 104;
+	borders[10].w = 20;
+	borders[10].h = 42;
 
 	borders[11].x = 0;
 	borders[11].y = 0;

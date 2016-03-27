@@ -10,11 +10,15 @@ private:
 	Graphics* graphics;
 	Borders* bordersClass;
 
+	//текст в углу
+	
+
 	// Изображения фона, крестиков и ноликов
 	Image* back;
 	Image* player[2];
 	Image* packman;
 	Image* ghost_red;
+	
 
 	// Области для определения столкновения
 	SDL_Rect packman_rect;
@@ -23,7 +27,7 @@ private:
 
 	// Массив, обозначающий поле, и текущий игрок
 	int grid[3][3], currplayer;
-
+	
 	void StartSettings()
 	{
 		// Берем объекты Graphics и Input и устанавливаем заголовок окна
@@ -51,8 +55,8 @@ private:
 		// Очистка поля и вывод фона
 
 		currplayer = 1;
-		packman_rect.x = 14;
-		packman_rect.y = 67;
+		packman_rect.x = 234;
+		packman_rect.y = 38;
 		packman_rect.w = packman_rect.h = 22;
 
 		for (int i = 0; i < 3; i++)
@@ -61,6 +65,12 @@ private:
 
 		graphics->DrawImage(back, 0, 0);
 		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);
+
+		char tmpch[100];
+		for (int i = 0; i < 100; i++)
+			tmpch[i] = 0;
+		sprintf_s(tmpch, "You win!");
+		graphics->WriteText(430, 50, tmpch, 20, 0, 255, 0);
 		graphics->Flip();
 	}
 
