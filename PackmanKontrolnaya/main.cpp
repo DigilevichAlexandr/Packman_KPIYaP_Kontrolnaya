@@ -24,15 +24,13 @@ private:
 	// Массив, обозначающий поле, и текущий игрок
 	int grid[3][3], currplayer;
 
-	int packmansPlaceX, packmansPlaceY;
-
 	void StartSettings()
 	{
 		// Берем объекты Graphics и Input и устанавливаем заголовок окна
 
 		input = game->GetInput();
 		graphics = game->GetGraphics();
-		SDL_WM_SetCaption("Tic-Tac-Toe", 0);
+		SDL_WM_SetCaption("PackMan", 0);
 
 		borders = bordersClass->MakeBorders();
 	}
@@ -53,8 +51,8 @@ private:
 		// Очистка поля и вывод фона
 
 		currplayer = 1;
-		packmansPlaceX = packmansPlaceY = GRID_SIZE / 2;
-		packman_rect.x = packman_rect.y = packmansPlaceX;
+		packman_rect.x = 14;
+		packman_rect.y = 67;
 		packman_rect.w = packman_rect.h = 22;
 
 		for (int i = 0; i < 3; i++)
@@ -62,7 +60,7 @@ private:
 				grid[i][j] = 0;
 
 		graphics->DrawImage(back, 0, 0);
-		graphics->DrawImage(packman, packmansPlaceX, packmansPlaceY + 11);
+		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);
 		graphics->Flip();
 	}
 
@@ -115,6 +113,7 @@ private:
 public:
 	void Start()
 	{
+		//MessageBox(0, "Выбери уровень сложности", "", MB_YESNO);
 		StartSettings();
 		LoadingImage();
 		Reset();
@@ -149,11 +148,18 @@ public:
 				if (input->IsKeyboardButtonDown(SDLK_a))
 				{
 					packman_rect.x--;
+					for (int i = 0;i < 52;i++)
+						if (IsCollisionOccured(&packman_rect, &(borders[i])))
+							packman_rect.x++;
+
 				}
 				else
 					if (input->IsKeyboardButtonDown(SDLK_s))
 					{
 						packman_rect.y++;
+						for (int i = 0;i < 52;i++)
+							if (IsCollisionOccured(&packman_rect, &(borders[i])))
+								packman_rect.y--;
 					}
 
 
