@@ -64,14 +64,9 @@ private:
 				grid[i][j] = 0;
 
 		graphics->DrawImage(back, 0, 0);
-		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);
-
-		char tmpch[100];
-		for (int i = 0; i < 100; i++)
-			tmpch[i] = 0;
-		sprintf_s(tmpch, "You win!");
-		graphics->WriteText(430, 50, tmpch, 20, 0, 255, 0);
+		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);		
 		graphics->Flip();
+
 	}
 
 	int GameOver()
@@ -177,8 +172,17 @@ public:
 		// Рисуем пакмана
 		graphics->DrawImage(packman, packman_rect.x, packman_rect.y);
 
+		//рисуем текст
+		Uint16 tmpch[100] = {'п','р','и','в'};
+		/*for (int i = 0; i < 100; i++)
+			tmpch[i] = 0;
+		sprintf_s(tmpch, "You win!");*/
+		graphics->WriteText(10, 18, tmpch, 20, 0, 255, 0);
+
 		// Выводим на экран
 		graphics->Flip();
+
+		
 
 		// Обрабатываем конец игры
 		GameOverHandle(GameOver());

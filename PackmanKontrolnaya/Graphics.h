@@ -18,7 +18,7 @@ public:
 	Image* NewImage(char* file, int r, int g, int b);
 	bool DrawImage(Image* img, int x, int y);
 	bool DrawImage(Image* img, int x, int y, int startX, int startY, int endX, int endY);
-	void WriteText(int x, int y, char text[100], int sz, int r, int g, int b);
+	void WriteText(int x, int y, Uint16 text[100], int sz, int r, int g, int b);
 
 	void Flip();
 };
