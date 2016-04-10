@@ -76,10 +76,10 @@ void Graphics::WriteText(int x, int y, Uint16 text[100], int sz, int r, int g, i
 	////SDL_FreeSurface(TextSurface); // Освобождаем память уже ненужной поверхности
 	//TTF_CloseFont(fnt); // Закрываем шрифт
 
-	SDL_Color fontColor = { 255, 0, 0, 255 };
+	/*SDL_Color fontColor = { 255, 0, 0, 255 };
 	SDL_Surface *place = 0;
 	TTF_Font *font = TTF_OpenFont("courier.ttf", sz);
-	SDL_Surface *info = TTF_RenderUNICODE_Solid(font, text, fontColor);
+	SDL_Surface *info = TTF_RenderUNICODE_Solid(font, text, fontColor);*/
 
 }
 

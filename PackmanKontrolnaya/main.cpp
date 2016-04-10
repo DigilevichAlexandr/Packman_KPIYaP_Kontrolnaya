@@ -3,6 +3,7 @@
 // Размер поля. Размер крестиков и ноликов должен быть 128x128 пикселей
 const int GRID_SIZE = 444;
 
+
 class PacmanScreen : public Screen
 {
 private:
@@ -11,14 +12,14 @@ private:
 	Borders* bordersClass;
 
 	//текст в углу
-	
+
 
 	// Изображения фона, крестиков и ноликов
 	Image* back;
 	Image* player[2];
 	Image* packman;
 	Image* ghost_red;
-	
+
 
 	// Области для определения столкновения
 	SDL_Rect packman_rect;
@@ -27,7 +28,8 @@ private:
 
 	// Массив, обозначающий поле, и текущий игрок
 	int grid[3][3], currplayer;
-	
+	int speed = 1;
+
 	void StartSettings()
 	{
 		// Берем объекты Graphics и Input и устанавливаем заголовок окна
@@ -55,8 +57,8 @@ private:
 		// Очистка поля и вывод фона
 
 		currplayer = 1;
-		packman_rect.x = 234;
-		packman_rect.y = 38;
+		packman_rect.x = 330;
+		packman_rect.y = 64;
 		packman_rect.w = packman_rect.h = 22;
 
 		for (int i = 0; i < 3; i++)
@@ -64,7 +66,7 @@ private:
 				grid[i][j] = 0;
 
 		graphics->DrawImage(back, 0, 0);
-		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);		
+		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);
 		graphics->Flip();
 
 	}
@@ -136,36 +138,48 @@ public:
 		// Двигаем Пакмана
 		if (input->IsKeyboardButtonDown(SDLK_d))
 		{
-			packman_rect.x++;
+			packman_rect.x += speed;
 			for (int i = 0;i < 52;i++)
 				if (IsCollisionOccured(&packman_rect, &(borders[i])))
-					packman_rect.x--;
+					packman_rect.x -= speed;
 		}
 		else
 			if (input->IsKeyboardButtonDown(SDLK_w))
 			{
-				packman_rect.y--;
+				packman_rect.y -= speed;
 				for (int i = 0;i < 52;i++)
 					if (IsCollisionOccured(&packman_rect, &(borders[i])))
-						packman_rect.y++;
+						packman_rect.y += speed;
 			}
 			else
 				if (input->IsKeyboardButtonDown(SDLK_a))
 				{
-					packman_rect.x--;
+					packman_rect.x -= speed;
 					for (int i = 0;i < 52;i++)
 						if (IsCollisionOccured(&packman_rect, &(borders[i])))
-							packman_rect.x++;
+							packman_rect.x += speed;
 
 				}
 				else
 					if (input->IsKeyboardButtonDown(SDLK_s))
 					{
-						packman_rect.y++;
+						packman_rect.y += speed;
 						for (int i = 0;i < 52;i++)
 							if (IsCollisionOccured(&packman_rect, &(borders[i])))
-								packman_rect.y--;
+								packman_rect.y -= speed;
 					}
+
+		//TTF_Font *fntCourier = TTF_OpenFont("courier.ttf",12);
+
+		//SDL_Color clrFg = { 0,0,255,0 };  // Blue ("Fg" is foreground)
+
+		//SDL_Surface *sText = TTF_RenderText_Solid(fntCourier, "Courier 12", clrFg);
+
+		//SDL_Rect rcDest = { 0,0,0,0 };
+
+		//SDL_BlitSurface(sText, NULL, screen, &rcDest);
+
+		//SDL_FreeSurface(sText);
 
 
 
@@ -173,17 +187,19 @@ public:
 		graphics->DrawImage(packman, packman_rect.x, packman_rect.y);
 
 		//рисуем текст
-		Uint16 tmpch[100] = {'п','р','и','в'};
+		//Uint16 tmpch[100] = {'п','р','и','в'};
 		/*for (int i = 0; i < 100; i++)
 			tmpch[i] = 0;
 		sprintf_s(tmpch, "You win!");*/
-		graphics->WriteText(10, 18, tmpch, 20, 0, 255, 0);
+		//graphics->WriteText(10, 18, tmpch, 20, 0, 255, 0);
+
+
 
 		// Выводим на экран
 		graphics->Flip();
 
-		
 
+		/*TTF_CloseFont( fntCourier );*/
 		// Обрабатываем конец игры
 		GameOverHandle(GameOver());
 	}

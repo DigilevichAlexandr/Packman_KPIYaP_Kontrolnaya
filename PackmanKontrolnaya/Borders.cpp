@@ -34,9 +34,9 @@ SDL_Rect* Borders::MakeBorders()
 	borders[5].w = 69;
 	borders[5].h = 29;
 
-	borders[6].x = 401;
-	borders[6].y = 77;
-	borders[6].w = 48;
+	borders[6].x = 357;
+	borders[6].y = 35;
+	borders[6].w = 52;
 	borders[6].h = 29;
 
 	borders[7].x = 436;
@@ -46,82 +46,82 @@ SDL_Rect* Borders::MakeBorders()
 
 	borders[8].x = 34;
 	borders[8].y = 90;
-	borders[8].w = 53;
-	borders[8].h = 7;
+	borders[8].w = 54;
+	borders[8].h = 14;
 
 	borders[9].x = 163;
 	borders[9].y = 90; 
-	borders[9].w = 117;
-	borders[9].h = 7;
+	borders[9].w = 116;
+	borders[9].h = 14;
 
 	borders[10].x = 211;
 	borders[10].y = 104;
 	borders[10].w = 20;
 	borders[10].h = 42;
 
-	borders[11].x = 0;
-	borders[11].y = 0;
-	borders[11].w = 444;
-	borders[11].h = 7;
+	borders[11].x = 356;
+	borders[11].y = 90;
+	borders[11].w = 52;
+	borders[11].h = 14;
 
-	borders[12].x = 0;
-	borders[12].y = 0;
-	borders[12].w = 444;
-	borders[12].h = 7;
+	borders[12].x = 116;
+	borders[12].y = 90;
+	borders[12].w = 19;
+	borders[12].h = 98;
 
-	borders[13].x = 0;
-	borders[13].y = 0;
-	borders[13].w = 444;
+	borders[13].x = 7;
+	borders[13].y = 132;
+	borders[13].w = 81;
 	borders[13].h = 7;
 
-	borders[14].x = 0;
-	borders[14].y = 0;
-	borders[14].w = 444;
-	borders[14].h = 7;
+	borders[14].x = 135;
+	borders[14].y = 133;
+	borders[14].w = 48;
+	borders[14].h = 14;
 
-	borders[15].x = 0;
-	borders[15].y = 0;
-	borders[15].w = 444;
-	borders[15].h = 7;
+	borders[15].x = 259;
+	borders[15].y = 133;
+	borders[15].w = 48;
+	borders[15].h = 14;
 
-	borders[16].x = 0;
-	borders[16].y = 0;
-	borders[16].w = 444;
-	borders[16].h = 7;
+	borders[16].x = 307;
+	borders[16].y = 91;
+	borders[16].w = 20;
+	borders[16].h = 98;
 
-	borders[17].x = 0;
-	borders[17].y = 0;
-	borders[17].w = 444;
+	borders[17].x = 356;
+	borders[17].y = 132;
+	borders[17].w = 79;
 	borders[17].h = 7;
 
-	borders[18].x = 0;
-	borders[18].y = 0;
-	borders[18].w = 444;
-	borders[18].h = 7;
+	borders[18].x = 81;
+	borders[18].y = 138;
+	borders[18].w = 7;
+	borders[18].h = 50;
 
 	borders[19].x = 0;
-	borders[19].y = 0;
-	borders[19].w = 444;
+	borders[19].y = 182;
+	borders[19].w = 81;
 	borders[19].h = 7;
 
-	borders[20].x = 0;
-	borders[20].y = 0;
-	borders[20].w = 444;
+	borders[20].x = 163;
+	borders[20].y = 174;
+	borders[20].w = 44;
 	borders[20].h = 7;
 
-	borders[21].x = 0;
-	borders[21].y = 0;
-	borders[21].w = 444;
+	borders[21].x = 236;
+	borders[21].y = 174;
+	borders[21].w = 43;
 	borders[21].h = 7;
 
-	borders[22].x = 0;
-	borders[22].y = 0;
-	borders[22].w = 444;
-	borders[22].h = 7;
+	borders[22].x = 355;
+	borders[22].y = 132;
+	borders[22].w = 7;
+	borders[22].h = 56;
 
-	borders[23].x = 0;
-	borders[23].y = 0;
-	borders[23].w = 444;
+	borders[23].x = 361;
+	borders[23].y = 182;
+	borders[23].w = 82;
 	borders[23].h = 7;
 
 	borders[24].x = 0;
