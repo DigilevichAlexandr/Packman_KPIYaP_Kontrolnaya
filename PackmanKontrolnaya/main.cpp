@@ -57,8 +57,8 @@ private:
 		// Очистка поля и вывод фона
 
 		currplayer = 1;
-		packman_rect.x = 330;
-		packman_rect.y = 64;
+		packman_rect.x = 137;
+		packman_rect.y = 273;
 		packman_rect.w = packman_rect.h = 22;
 
 		for (int i = 0; i < 3; i++)
@@ -139,7 +139,7 @@ public:
 		if (input->IsKeyboardButtonDown(SDLK_d))
 		{
 			packman_rect.x += speed;
-			for (int i = 0;i < 52;i++)
+			for (int i = 0;i < 54;i++)
 				if (IsCollisionOccured(&packman_rect, &(borders[i])))
 					packman_rect.x -= speed;
 		}
@@ -147,7 +147,7 @@ public:
 			if (input->IsKeyboardButtonDown(SDLK_w))
 			{
 				packman_rect.y -= speed;
-				for (int i = 0;i < 52;i++)
+				for (int i = 0;i < 54;i++)
 					if (IsCollisionOccured(&packman_rect, &(borders[i])))
 						packman_rect.y += speed;
 			}
@@ -155,7 +155,7 @@ public:
 				if (input->IsKeyboardButtonDown(SDLK_a))
 				{
 					packman_rect.x -= speed;
-					for (int i = 0;i < 52;i++)
+					for (int i = 0;i < 54;i++)
 						if (IsCollisionOccured(&packman_rect, &(borders[i])))
 							packman_rect.x += speed;
 
@@ -164,7 +164,7 @@ public:
 					if (input->IsKeyboardButtonDown(SDLK_s))
 					{
 						packman_rect.y += speed;
-						for (int i = 0;i < 52;i++)
+						for (int i = 0;i < 54;i++)
 							if (IsCollisionOccured(&packman_rect, &(borders[i])))
 								packman_rect.y -= speed;
 					}
