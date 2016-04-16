@@ -32,6 +32,7 @@ private:
 	int speed = 1;
 	int goOut = 147;
 	int yPos, xPos = 0;
+	int gameOver = -1;
 	struct CurPos { int y, x; } curPos;
 	bool goFlag = false;
 	bool seekFlag = false;
@@ -66,6 +67,7 @@ private:
 		gotThere = false;
 		curPos.y = 186;
 		curPos.x = 210;
+		gameOver = -1;
 
 		packman_rect.x = 137;
 		packman_rect.y = 273;
@@ -73,7 +75,7 @@ private:
 
 		ghost_red_rect.x = 210;
 		ghost_red_rect.y = 186;
-		ghost_red_rect.w = packman_rect.h = 22;
+		ghost_red_rect.w = ghost_red_rect.h = 22;
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 3; j++)
@@ -111,13 +113,13 @@ private:
 		switch (over)
 		{
 		case 0:
-			message = "Ничья! Желаете сыграть еще раз?";
+			message = "Надо быть шустрее, дружище. Еще разок?";
 			break;
 		case 1:
-			message = "Крестики победили! Желаете сыграть еще раз?";
+			message = "";
 			break;
 		case 2:
-			message = "Нолики победили! Желаете сыграть еще раз?";
+			message = "";
 			break;
 			// Если игра не окончена, возвращаемся из функции
 		default:
@@ -150,11 +152,12 @@ public:
 		graphics->DrawImage(back, 0, 0);
 
 		// Двигаем Пакмана
+
 		if (input->IsKeyboardButtonDown(SDLK_d))
 		{
 			goFlag = true;
 			packman_rect.x += speed;
-			for (int i = 0;i < 54;i++)
+			for (int i = 0;i < 55;i++)
 				if (IsCollisionOccured(&packman_rect, &(borders[i])))
 					packman_rect.x -= speed;
 		}
@@ -163,7 +166,7 @@ public:
 			{
 				goFlag = true;
 				packman_rect.y -= speed;
-				for (int i = 0;i < 54;i++)
+				for (int i = 0;i < 55;i++)
 					if (IsCollisionOccured(&packman_rect, &(borders[i])))
 						packman_rect.y += speed;
 			}
@@ -172,7 +175,7 @@ public:
 				{
 					goFlag = true;
 					packman_rect.x -= speed;
-					for (int i = 0;i < 54;i++)
+					for (int i = 0;i < 55;i++)
 						if (IsCollisionOccured(&packman_rect, &(borders[i])))
 							packman_rect.x += speed;
 
@@ -182,7 +185,7 @@ public:
 					{
 						goFlag = true;
 						packman_rect.y += speed;
-						for (int i = 0;i < 54;i++)
+						for (int i = 0;i < 55;i++)
 							if (IsCollisionOccured(&packman_rect, &(borders[i])))
 								packman_rect.y -= speed;
 					}
@@ -193,6 +196,13 @@ public:
 							Reset();
 							return;
 						}
+						/*else
+						{
+							if (input->IsKeyboardButtonTap(SDLK_f))
+							{
+								
+							}
+						}*/
 					}
 
 		//TTF_Font *fntCourier = TTF_OpenFont("courier.ttf",12);
@@ -223,13 +233,17 @@ public:
 		}
 		else
 		{
+			borders[54].x = 207;
+			borders[54].y = 174;
+			borders[54].h = 6;
+			borders[54].w = 174;
 			yPos = packman_rect.y - ghost_red_rect.y;
 			if (yPos != 0)
 			{
 				if (packman_rect.y > ghost_red_rect.y)
 				{
 					ghost_red_rect.y++;
-					for (int i = 0;i < 54;i++)
+					for (int i = 0;i < 55;i++)
 						if (IsCollisionOccured(&ghost_red_rect, &(borders[i])))
 						{
 							ghost_red_rect.y--;
@@ -238,7 +252,7 @@ public:
 				else
 				{
 					ghost_red_rect.y--;
-					for (int i = 0;i < 54;i++)
+					for (int i = 0;i < 55;i++)
 						if (IsCollisionOccured(&ghost_red_rect, &(borders[i])))
 						{
 							ghost_red_rect.y++;
@@ -251,10 +265,20 @@ public:
 				if (packman_rect.x > ghost_red_rect.x)
 				{
 					ghost_red_rect.x++;
+					for (int i = 0;i < 55;i++)
+						if (IsCollisionOccured(&ghost_red_rect, &(borders[i])))
+						{
+							ghost_red_rect.x--;
+						}
 				}
 				else
 				{
 					ghost_red_rect.x--;
+					for (int i = 0;i < 55;i++)
+						if (IsCollisionOccured(&ghost_red_rect, &(borders[i])))
+						{
+							ghost_red_rect.x++;
+						}
 				}
 			}
 
@@ -277,7 +301,12 @@ public:
 
 		/*TTF_CloseFont( fntCourier );*/
 		// Обрабатываем конец игры
-		GameOverHandle(GameOver());
+		if (IsCollisionOccured(&ghost_red_rect, &packman_rect))
+		{
+			gameOver = 0;
+		}
+
+		GameOverHandle(gameOver);
 	}
 };
 
