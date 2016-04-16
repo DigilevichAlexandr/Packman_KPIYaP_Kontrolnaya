@@ -23,12 +23,19 @@ private:
 
 	// Области для определения столкновения
 	SDL_Rect packman_rect;
+	SDL_Rect ghost_red_rect;
 	SDL_Rect* borders;
 
 
 	// Массив, обозначающий поле, и текущий игрок
 	int grid[3][3], currplayer;
 	int speed = 1;
+	int goOut = 147;
+	int yPos, xPos = 0;
+	struct CurPos { int y, x; } curPos;
+	bool goFlag = false;
+	bool seekFlag = false;
+	bool gotThere = false;
 
 	void StartSettings()
 	{
@@ -55,18 +62,25 @@ private:
 	void Reset()
 	{
 		// Очистка поля и вывод фона
+		goFlag = false;
+		gotThere = false;
+		curPos.y = 186;
+		curPos.x = 210;
 
-		currplayer = 1;
 		packman_rect.x = 137;
 		packman_rect.y = 273;
 		packman_rect.w = packman_rect.h = 22;
+
+		ghost_red_rect.x = 210;
+		ghost_red_rect.y = 186;
+		ghost_red_rect.w = packman_rect.h = 22;
 
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 3; j++)
 				grid[i][j] = 0;
 
-		graphics->DrawImage(back, 0, 0);
-		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);
+		/*graphics->DrawImage(back, 0, 0);
+		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);*/
 		graphics->Flip();
 
 	}
@@ -138,6 +152,7 @@ public:
 		// Двигаем Пакмана
 		if (input->IsKeyboardButtonDown(SDLK_d))
 		{
+			goFlag = true;
 			packman_rect.x += speed;
 			for (int i = 0;i < 54;i++)
 				if (IsCollisionOccured(&packman_rect, &(borders[i])))
@@ -146,6 +161,7 @@ public:
 		else
 			if (input->IsKeyboardButtonDown(SDLK_w))
 			{
+				goFlag = true;
 				packman_rect.y -= speed;
 				for (int i = 0;i < 54;i++)
 					if (IsCollisionOccured(&packman_rect, &(borders[i])))
@@ -154,6 +170,7 @@ public:
 			else
 				if (input->IsKeyboardButtonDown(SDLK_a))
 				{
+					goFlag = true;
 					packman_rect.x -= speed;
 					for (int i = 0;i < 54;i++)
 						if (IsCollisionOccured(&packman_rect, &(borders[i])))
@@ -163,10 +180,19 @@ public:
 				else
 					if (input->IsKeyboardButtonDown(SDLK_s))
 					{
+						goFlag = true;
 						packman_rect.y += speed;
 						for (int i = 0;i < 54;i++)
 							if (IsCollisionOccured(&packman_rect, &(borders[i])))
 								packman_rect.y -= speed;
+					}
+					else
+					{
+						if (input->IsKeyboardButtonDown(SDLK_r))
+						{
+							Reset();
+							return;
+						}
 					}
 
 		//TTF_Font *fntCourier = TTF_OpenFont("courier.ttf",12);
@@ -185,6 +211,56 @@ public:
 
 		// Рисуем пакмана
 		graphics->DrawImage(packman, packman_rect.x, packman_rect.y);
+
+		//Рисуем призраков
+		gotThere = curPos.y > goOut;
+		if (gotThere)
+		{
+			if (goFlag)
+			{
+				ghost_red_rect.y = curPos.y--;
+			}
+		}
+		else
+		{
+			yPos = packman_rect.y - ghost_red_rect.y;
+			if (yPos != 0)
+			{
+				if (packman_rect.y > ghost_red_rect.y)
+				{
+					ghost_red_rect.y++;
+					for (int i = 0;i < 54;i++)
+						if (IsCollisionOccured(&ghost_red_rect, &(borders[i])))
+						{
+							ghost_red_rect.y--;
+						}
+				}
+				else
+				{
+					ghost_red_rect.y--;
+					for (int i = 0;i < 54;i++)
+						if (IsCollisionOccured(&ghost_red_rect, &(borders[i])))
+						{
+							ghost_red_rect.y++;
+						}
+				}
+			}
+			xPos = packman_rect.x - ghost_red_rect.x;
+			if (xPos != 0)
+			{
+				if (packman_rect.x > ghost_red_rect.x)
+				{
+					ghost_red_rect.x++;
+				}
+				else
+				{
+					ghost_red_rect.x--;
+				}
+			}
+
+		}
+
+		graphics->DrawImage(ghost_red, ghost_red_rect.x, ghost_red_rect.y);
 
 		//рисуем текст
 		//Uint16 tmpch[100] = {'п','р','и','в'};
