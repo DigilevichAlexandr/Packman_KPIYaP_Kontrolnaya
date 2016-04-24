@@ -35,6 +35,7 @@ private:
 	int goOut = 147;
 	int yPos, xPos = 0;
 	int gameOver = -1;
+	int score;
 	struct CurPos { int y, x; } curPos;
 	bool goFlag = false;
 	bool seekFlag = false;
@@ -51,7 +52,7 @@ private:
 
 		borders = bordersClass->MakeBorders();
 		coins = coinsClass->MakeCoins();
-		coinsFlags = coinsClass->MakeExistingFglags();
+		//coinsFlags = coinsClass->MakeExistingFglags();
 	}
 
 	void LoadingImage()
@@ -69,23 +70,22 @@ private:
 	void Reset()
 	{
 		// Очистка поля и вывод фона
+		score = 0;
 		goFlag = false;
 		gotThere = false;
 		curPos.y = 186;
 		curPos.x = 210;
 		gameOver = -1;
 
-		packman_rect.x = 137;
-		packman_rect.y = 273;
+		packman_rect.x = 332;
+		packman_rect.y = 58;
 		packman_rect.w = packman_rect.h = 22;
 
 		ghost_red_rect.x = 210;
 		ghost_red_rect.y = 186;
 		ghost_red_rect.w = ghost_red_rect.h = 22;
 
-		for (int i = 0; i < 3; i++)
-			for (int j = 0; j < 3; j++)
-				grid[i][j] = 0;
+		coinsFlags = coinsClass->MakeExistingFglags();
 
 		/*graphics->DrawImage(back, 0, 0);
 		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);*/
@@ -212,11 +212,12 @@ public:
 
 		//Пакман ест монетки, которые тут же и рисуются
 
-		for (int i = 0;i < 1;i++)
+		for (int i = 0;i < 11;i++)
 		{
 			if (IsCollisionOccured(&packman_rect, &(coins[i])))
 			{
 				coinsFlags[i] = false;
+				score++;
 			}
 
 			if (coinsFlags[i])
@@ -224,8 +225,6 @@ public:
 				graphics->DrawImage(coinImage, coins[i].x, coins[i].y);
 			}
 		}
-
-
 
 		//работа со шрифтом
 
