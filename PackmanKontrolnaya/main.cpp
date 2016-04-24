@@ -10,7 +10,8 @@ private:
 	Input* input;
 	Graphics* graphics;
 	Borders* bordersClass;
-
+	Coins* coinsClass;
+	
 	//текст в углу
 
 
@@ -19,13 +20,14 @@ private:
 	Image* player[2];
 	Image* packman;
 	Image* ghost_red;
+	Image* coinImage;
 
 
 	// Области для определения столкновения
 	SDL_Rect packman_rect;
 	SDL_Rect ghost_red_rect;
 	SDL_Rect* borders;
-
+	SDL_Rect* coins;
 
 	// Массив, обозначающий поле, и текущий игрок
 	int grid[3][3], currplayer;
@@ -37,6 +39,7 @@ private:
 	bool goFlag = false;
 	bool seekFlag = false;
 	bool gotThere = false;
+	bool* coinsFlags;
 
 	void StartSettings()
 	{
@@ -47,6 +50,8 @@ private:
 		SDL_WM_SetCaption("PackMan", 0);
 
 		borders = bordersClass->MakeBorders();
+		coins = coinsClass->MakeCoins();
+		coinsFlags = coinsClass->MakeExistingFglags();
 	}
 
 	void LoadingImage()
@@ -58,6 +63,7 @@ private:
 		player[1] = graphics->NewImage("3.bmp");
 		packman = graphics->NewImage("pacman.bmp");
 		ghost_red = graphics->NewImage("red.bmp");
+		coinImage = graphics->NewImage("coin.bmp");
 	}
 
 	void Reset()
@@ -84,7 +90,6 @@ private:
 		/*graphics->DrawImage(back, 0, 0);
 		graphics->DrawImage(packman, packman_rect.x, packman_rect.y + 11);*/
 		graphics->Flip();
-
 	}
 
 	int GameOver()
@@ -200,10 +205,29 @@ public:
 						{
 							if (input->IsKeyboardButtonTap(SDLK_f))
 							{
-								
+
 							}
 						}*/
 					}
+
+		//Пакман ест монетки, которые тут же и рисуются
+
+		for (int i = 0;i < 1;i++)
+		{
+			if (IsCollisionOccured(&packman_rect, &(coins[i])))
+			{
+				coinsFlags[i] = false;
+			}
+
+			if (coinsFlags[i])
+			{
+				graphics->DrawImage(coinImage, coins[i].x, coins[i].y);
+			}
+		}
+
+
+
+		//работа со шрифтом
 
 		//TTF_Font *fntCourier = TTF_OpenFont("courier.ttf",12);
 
@@ -216,7 +240,6 @@ public:
 		//SDL_BlitSurface(sText, NULL, screen, &rcDest);
 
 		//SDL_FreeSurface(sText);
-
 
 
 		// Рисуем пакмана

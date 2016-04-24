@@ -6,10 +6,10 @@
 #include <Windows.h>
 #include <SDL.h>
 #include <SDL_ttf.h>
-
 #include "Game.h"
 #include "Graphics.h"
 #include "Image.h"
 #include "Borders.h"
+#include "Coins.h"
 
 #endif

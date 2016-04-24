@@ -2,7 +2,7 @@
 
 SDL_Rect* Borders::MakeBorders()
 {
-	SDL_Rect* borders =new SDL_Rect[55];
+	SDL_Rect* borders = new SDL_Rect[55];
 
 	borders[0].x = 0;
 	borders[0].y = 0;
@@ -50,7 +50,7 @@ SDL_Rect* Borders::MakeBorders()
 	borders[8].h = 14;
 
 	borders[9].x = 163;
-	borders[9].y = 90; 
+	borders[9].y = 90;
 	borders[9].w = 116;
 	borders[9].h = 14;
 
@@ -273,7 +273,7 @@ SDL_Rect* Borders::MakeBorders()
 	borders[53].y = 180;
 	borders[53].w = 7;
 	borders[53].h = 44;
-		
+
 	borders[54].x = 0;
 	borders[54].y = 0;
 	borders[54].w = 0;
