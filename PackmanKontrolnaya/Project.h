@@ -11,5 +11,7 @@
 #include "Image.h"
 #include "Borders.h"
 #include "Coins.h"
+#include <stdlib.h>  
+#include "SeekPoints.h"
 
 #endif
