@@ -390,56 +390,58 @@ public:
 
 	void GhostsSeek(SDL_Rect* hunter, SDL_Rect* target)
 	{
-		if (IsCollisionOccured(hunter, target))
+		yPos = target->y - hunter->y;
+		if (yPos != 0)
 		{
-			targetNum = (targetNum + 1) % POINTS_NUM;
+			if (target->y > hunter->y)
+			{
+				hunter->y++;
+				for (int i = 0;i < 55;i++)
+					if (IsCollisionOccured(hunter, &(borders[i])))
+					{						
+						hunter->y--;
+					}
+			}
+			else
+			{
+				hunter->y--;
+				for (int i = 0;i < 55;i++)
+					if (IsCollisionOccured(hunter, &(borders[i])))
+					{
+						hunter->y++;
+					}
+			}
 		}
 		else
 		{
-			yPos = target->y - hunter->y;
-			if (yPos != 0)
+			targetNum = (targetNum + 1) % POINTS_NUM;
+		}
+
+		xPos = target->x - hunter->x;
+		if (xPos != 0)
+		{
+			if (target->x > hunter->x)
 			{
-				if (target->y > hunter->y)
-				{
-					hunter->y++;
-					for (int i = 0;i < 55;i++)
-						if (IsCollisionOccured(hunter, &(borders[i])))
-						{
-							hunter->y--;
-						}
-				}
-				else
-				{
-					hunter->y--;
-					for (int i = 0;i < 55;i++)
-						if (IsCollisionOccured(hunter, &(borders[i])))
-						{
-							hunter->y++;
-						}
-				}
+				hunter->x++;
+				for (int i = 0;i < 55;i++)
+					if (IsCollisionOccured(hunter, &(borders[i])))
+					{
+						hunter->x--;
+					}
 			}
-			xPos = target->x - hunter->x;
-			if (xPos != 0)
+			else
 			{
-				if (target->x > hunter->x)
-				{
-					hunter->x++;
-					for (int i = 0;i < 55;i++)
-						if (IsCollisionOccured(hunter, &(borders[i])))
-						{
-							hunter->x--;
-						}
-				}
-				else
-				{
-					hunter->x--;
-					for (int i = 0;i < 55;i++)
-						if (IsCollisionOccured(hunter, &(borders[i])))
-						{
-							hunter->x++;
-						}
-				}
+				hunter->x--;
+				for (int i = 0;i < 55;i++)
+					if (IsCollisionOccured(hunter, &(borders[i])))
+					{
+						hunter->x++;
+					}
 			}
+		}
+		else
+		{
+			targetNum = (targetNum + 1) % POINTS_NUM;
 		}
 	}
 };
