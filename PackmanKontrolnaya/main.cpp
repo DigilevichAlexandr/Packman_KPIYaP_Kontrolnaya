@@ -56,7 +56,7 @@ private:
 	bool* coinsFlags;
 	bool is_open_door = false;
 	bool lvl = 1;
-	bool seek = false;
+	bool seek = false;	
 
 	void StartSettings()
 	{
@@ -237,13 +237,37 @@ public:
 							Reset();
 							return;
 						}
-						/*else
+						else
 						{
 							if (input->IsKeyboardButtonTap(SDLK_f))
 							{
+								WNDCLASSEX menu;
+								HWND hwnd;
+								MSG uMsg;
 
+								memset(&menu, 0, sizeof(WNDCLASSEXW));
+								menu.cbSize = sizeof(WNDCLASSEX);
+								menu.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+								menu.hCursor = LoadCursor(NULL, IDC_ARROW);
+								menu.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+								///*menu.hInstance = hInstance;
+								//menu.lpfnWndProc = WndProc;*/
+								menu.lpszClassName = "Menu";
+
+								RegisterClassEx(&menu);
+
+								hwnd = CreateWindow(menu.lpszClassName, "Menushkino msg", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX,
+									(GetSystemMetrics(SM_CXSCREEN) - WIDTH), (GetSystemMetrics(SM_CYSCREEN) - HEIGHT) / 2, WIDTH, HEIGHT, NULL, NULL, NULL, NULL);
+
+								ShowWindow(hwnd, 1);
+
+								while (GetMessage(&uMsg, hwnd, NULL, NULL))
+								{
+									TranslateMessage(&uMsg);
+									DispatchMessage(&uMsg);
+								}
 							}
-						}*/
+						}
 					}
 
 		//Пакман ест монетки, которые тут же и рисуются
@@ -398,7 +422,7 @@ public:
 				hunter->y++;
 				for (int i = 0;i < 55;i++)
 					if (IsCollisionOccured(hunter, &(borders[i])))
-					{						
+					{
 						hunter->y--;
 					}
 			}

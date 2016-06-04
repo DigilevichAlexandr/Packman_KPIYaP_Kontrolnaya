@@ -17,5 +17,8 @@
 #include <memory.h>
 #include <tchar.h>
 
+#define WIDTH 640
+#define HEIGHT 480
+
 
 // TODO: Установите здесь ссылки на дополнительные заголовки, требующиеся для программы

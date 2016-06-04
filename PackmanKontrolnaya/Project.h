@@ -14,4 +14,7 @@
 #include <stdlib.h>  
 #include "SeekPoints.h"
 
+#define WIDTH 640
+#define HEIGHT 480
+
 #endif
