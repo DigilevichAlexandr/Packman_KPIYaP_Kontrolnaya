@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "SeekPoints.h"
 
 SDL_Rect* SeekPoints::MakeSeekPoints()

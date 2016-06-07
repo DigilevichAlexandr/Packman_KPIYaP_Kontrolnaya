@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Game.h"
 const int FRAMES_PER_SECOND = 100;
 const int SKIP_TICKS = 1000 / FRAMES_PER_SECOND;

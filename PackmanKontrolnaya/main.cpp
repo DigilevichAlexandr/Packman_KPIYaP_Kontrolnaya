@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Project.h"
 
 // Размер поля. Размер крестиков и ноликов должен быть 128x128 пикселей
@@ -169,7 +170,7 @@ private:
 		}
 
 		// Спрашиваем пользователя, хочет ли он сыграть еще раз
-		if (MessageBox(0, message, "Игра окончена", MB_YESNO) == IDYES)
+		if (MessageBox(0, (LPCWSTR)message, (LPCWSTR)"Игра окончена", MB_YESNO) == IDYES)
 			Reset();
 		else
 			game->Exit();
@@ -232,7 +233,7 @@ public:
 					}
 					else
 					{
-						if (input->IsKeyboardButtonDown(SDLK_r))
+						if (input->IsKeyboardButtonDown(SDLK_t))
 						{
 							Reset();
 							return;
@@ -241,31 +242,31 @@ public:
 						{
 							if (input->IsKeyboardButtonTap(SDLK_f))
 							{
-								WNDCLASSEX menu;
-								HWND hwnd;
-								MSG uMsg;
+								////WNDCLASSEX menu;
+								////HWND hwnd;
+								////MSG uMsg;
 
-								memset(&menu, 0, sizeof(WNDCLASSEXW));
-								menu.cbSize = sizeof(WNDCLASSEX);
-								menu.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-								menu.hCursor = LoadCursor(NULL, IDC_ARROW);
-								menu.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-								///*menu.hInstance = hInstance;
-								//menu.lpfnWndProc = WndProc;*/
-								menu.lpszClassName = "Menu";
+								////memset(&menu, 0, sizeof(WNDCLASSEXW));
+								////menu.cbSize = sizeof(WNDCLASSEX);
+								////menu.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+								////menu.hCursor = LoadCursor(NULL, IDC_ARROW);
+								////menu.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+								///////*menu.hInstance = hInstance;
+								//////menu.lpfnWndProc = WndProc;*/
+								////menu.lpszClassName = "Menu";
 
-								RegisterClassEx(&menu);
+								////RegisterClassEx(&menu);
 
-								hwnd = CreateWindow(menu.lpszClassName, "Menushkino msg", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX,
-									(GetSystemMetrics(SM_CXSCREEN) - WIDTH), (GetSystemMetrics(SM_CYSCREEN) - HEIGHT) / 2, WIDTH, HEIGHT, NULL, NULL, NULL, NULL);
+								////hwnd = CreateWindow(menu.lpszClassName, "Menushkino msg", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX,
+								////	(GetSystemMetrics(SM_CXSCREEN) - WIDTH), (GetSystemMetrics(SM_CYSCREEN) - HEIGHT) / 2, WIDTH, HEIGHT, NULL, NULL, NULL, NULL);
 
-								ShowWindow(hwnd, 1);
+								////ShowWindow(hwnd, 1);
 
-								while (GetMessage(&uMsg, hwnd, NULL, NULL))
-								{
-									TranslateMessage(&uMsg);
-									DispatchMessage(&uMsg);
-								}
+								////while (GetMessage(&uMsg, hwnd, NULL, NULL))
+								////{
+								////	TranslateMessage(&uMsg);
+								////	DispatchMessage(&uMsg);
+								////}
 							}
 						}
 					}

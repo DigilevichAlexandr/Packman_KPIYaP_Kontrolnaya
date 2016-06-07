@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Borders.h"
 
 SDL_Rect* Borders::MakeBorders()

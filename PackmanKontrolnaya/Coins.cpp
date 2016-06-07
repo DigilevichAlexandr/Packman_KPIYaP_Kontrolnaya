@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Coins.h"
 
 SDL_Rect* Coins::MakeCoins()

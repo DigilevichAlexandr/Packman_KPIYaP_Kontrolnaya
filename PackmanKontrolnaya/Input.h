@@ -16,13 +16,13 @@ public:
 	void IndexKeys(); // массив ввода с клавиатуры
 	bool Input::IsKeyboardButtonDown(SDLKey key);
 	bool Input::IsKeyboardButtonTap(SDLKey key);
-	bool IsMouseButtonDown(byte key);
-	bool IsMouseButtonUp(byte key);
+	bool IsMouseButtonDown(int key);
+	bool IsMouseButtonUp(int key);
 	POINT GetButtonDownCoords();
 
-	bool IsKeyDown(byte key);
-	bool IsKeyUp(byte key);
-	byte GetPressedKey();
+	bool IsKeyDown(int key);
+	bool IsKeyUp(int key);
+	int GetPressedKey();
 
 	bool IsExit();
 };
