@@ -182,33 +182,33 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     return (INT_PTR)FALSE;
 }
 
-////int CALLBACK Menu(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR IpCmdLine, int nCmdShow)
-////{
-////	WNDCLASSEX menu;
-////	HWND hwnd;
-////	MSG uMsg;
-////
-////	memset(&menu, 0, sizeof(WNDCLASSEXW));
-////	menu.cbSize = sizeof(WNDCLASSEX);
-////	menu.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-////	menu.hCursor = LoadCursor(NULL, IDC_ARROW);
-////	menu.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-////	menu.hInstance = hInstance;
-////	menu.lpfnWndProc = WndProc;
-////	menu.lpszClassName = (LPCWSTR)"Menu";
-////
-////	RegisterClassEx(&menu);
-////
-////	hwnd = CreateWindow(menu.lpszClassName, "Menushkino msg", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX,
-////		(GetSystemMetrics(SM_CXSCREEN) - WIDTH), (GetSystemMetrics(SM_CYSCREEN) - HEIGHT) / 2, WIDTH, HEIGHT, NULL, NULL, NULL, NULL);
-////
-////	ShowWindow(hwnd, nCmdShow);
-////
-////	while (GetMessage(&uMsg, hwnd, NULL, NULL))
-////	{
-////		TranslateMessage(&uMsg);
-////		DispatchMessage(&uMsg);
-////	}
-////
-////	return uMsg.wParam;
-////}
+int CALLBACK Menu(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR IpCmdLine, int nCmdShow)
+{
+	WNDCLASSEX menu;
+	HWND hwnd;
+	MSG uMsg;
+
+	memset(&menu, 0, sizeof(WNDCLASSEXW));
+	menu.cbSize = sizeof(WNDCLASSEX);
+	menu.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	menu.hCursor = LoadCursor(NULL, IDC_ARROW);
+	menu.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	menu.hInstance = hInstance;
+	menu.lpfnWndProc = WndProc;
+	menu.lpszClassName = "Menu";
+
+	RegisterClassEx(&menu);
+
+	hwnd = CreateWindow(menu.lpszClassName, "Menushkino msg", WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX,
+		(GetSystemMetrics(SM_CXSCREEN) - WIDTH), (GetSystemMetrics(SM_CYSCREEN) - HEIGHT) / 2, WIDTH, HEIGHT, NULL, NULL, NULL, NULL);
+
+	ShowWindow(hwnd, nCmdShow);
+
+	while (GetMessage(&uMsg, hwnd, NULL, NULL))
+	{
+		TranslateMessage(&uMsg);
+		DispatchMessage(&uMsg);
+	}
+
+	return uMsg.wParam;
+}

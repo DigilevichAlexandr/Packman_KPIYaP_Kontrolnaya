@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Graphics.h"
 
 Graphics::Graphics(int width, int height)

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Input.h"
 
 void Input::Update()
@@ -33,7 +32,7 @@ bool Input::IsKeyboardButtonTap(SDLKey key)
 	false;
 }
 
-bool Input::IsMouseButtonDown(int key)
+bool Input::IsMouseButtonDown(byte key)
 {
 	if (evt.type == SDL_MOUSEBUTTONDOWN)
 		if (evt.button.button == key)
@@ -41,7 +40,7 @@ bool Input::IsMouseButtonDown(int key)
 	return false;
 }
 
-bool Input::IsMouseButtonUp(int key)
+bool Input::IsMouseButtonUp(byte key)
 {
 	if (evt.type == SDL_MOUSEBUTTONUP)
 		if (evt.button.button == key)
@@ -58,17 +57,17 @@ POINT Input::GetButtonDownCoords()
 	return point;
 }
 
-bool Input::IsKeyDown(int key)
+bool Input::IsKeyDown(byte key)
 {
 	return (evt.type == SDL_KEYDOWN && evt.key.keysym.sym == key);
 }
 
-bool Input::IsKeyUp(int key)
+bool Input::IsKeyUp(byte key)
 {
 	return (evt.type == SDL_KEYUP && evt.key.keysym.sym == key);
 }
 
-int Input::GetPressedKey()
+byte Input::GetPressedKey()
 {
 	return evt.key.keysym.sym;
 }

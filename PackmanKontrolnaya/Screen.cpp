@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Screen.h"
 
 void Screen::SetController(Game* game)
